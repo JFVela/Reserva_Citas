@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Editado muajaja</h1>
+	<h1>Que hay papus</h1>
 	<div>
 		<a href="Controlador?accion=listarCliente">Listar Personas</a>
 	</div>
