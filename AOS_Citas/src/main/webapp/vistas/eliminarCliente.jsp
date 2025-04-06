@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Eliminar Cliente</title>
+<title>Eliminar Clientes</title>
 </head>
 <body>
 
