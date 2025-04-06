@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here goku le gana</title>
+<title>Eliminar Cliente</title>
 </head>
 <body>
 
