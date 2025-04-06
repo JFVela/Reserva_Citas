@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Eliminar Clientes</title>
+<title>Eliminar Clientes del Peru</title>
 </head>
 <body>
 
