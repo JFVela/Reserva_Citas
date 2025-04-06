@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Podremos editar mejor</h1>
+	<h1>Links</h1>
 	<div>
 		<a href="Controlador?accion=listarCliente">Listar Personas</a>
 	</div>
