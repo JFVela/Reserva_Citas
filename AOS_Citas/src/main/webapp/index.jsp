@@ -10,7 +10,7 @@
 
 	<h1>Links</h1>
 	<div>
-		<a href="Controlador?accion=listarCliente">Listar Personas</a>
+		<a href="ControladorCliente?accion=listarCliente">Listar Personas</a>
 	</div>
 
 </body>
