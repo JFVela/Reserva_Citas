@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Links de Pcientes</h1>
+	<h1>Links de Pacientes</h1>
 	<div>
 		<a href="ControladorCliente?accion=listarCliente">Listar Personas</a>
 	</div>
