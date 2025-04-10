@@ -11,6 +11,7 @@
 <body>
 
 	<h1>Listar Personas</h1>
+	<a href="ControladorCliente?accion=agregarCliente">Agregar Nuevo cliente</a>
 	<table border="1">
 		<thead>
 			<tr>

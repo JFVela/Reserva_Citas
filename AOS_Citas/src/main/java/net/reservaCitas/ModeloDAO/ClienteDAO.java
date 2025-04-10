@@ -44,7 +44,7 @@ public class ClienteDAO implements CRUD {
 
 		return list;
 	}
-	
+
 	@Override
 	public Cliente list(int id) {
 		// TODO Auto-generated method stub
@@ -53,8 +53,27 @@ public class ClienteDAO implements CRUD {
 
 	@Override
 	public boolean agregarCliente(Cliente cli) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "INSERT INTO `reservacitas`.`cliente` (`dni`, `nombres`, `apellidoPaterno`, `apellidoMaterno`, `edad`, `token`) VALUES (?, ?, ?, ?, ?, ?);";
+		try {
+			con = cn.getConection();
+			ps = con.prepareStatement(sql);
+
+			// Insertar los valores del cliente en el PreparedStatement
+			ps.setInt(1, cli.getDni());
+			ps.setString(2, cli.getNombres());
+			ps.setString(3, cli.getApellidoPaterno());
+			ps.setString(4, cli.getApellidoMaterno());
+			ps.setInt(5, cli.getEdad());
+			ps.setString(6, cli.getToken());
+
+			// Ejecutar la consulta
+			int result = ps.executeUpdate();
+
+			return result > 0; // Si la inserción fue exitosa, devuelve true
+		} catch (Exception e) {
+			System.out.println("Error al agregar cliente: " + e.getMessage());
+			return false; // En caso de error, devuelve false
+		}
 	}
 
 	@Override
