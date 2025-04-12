@@ -8,19 +8,20 @@
 </head>
 <body>
 	<div>
-		<h1>Agregar Cliente</h1>
-		<!-- En action ponemos el nombre del controlador de la carpeta "Controlador" -->>
-		<form action="ControladorCliente">
-			DNI: <br> <input type="number" name="txtDNI"> <br>
-			Nombres: <br> <input type="text" name="txtNombres"> <br>
-			Apellido Paterno: <br> <input type="text" name="txtApePaterno"><br>
-			Apellido Materno: <br> <input type="text" name="txtApeMaterno">
-			<br> Edad: <br> <input type="number" name="txtEdad">
-			<br> Token: <br> <input type="text" name="txtToken">
-			<br> <input type="submit" name="accion"
-				value="clienteFormulario">
+		<h1>Agregar Paciente</h1>
+		<form action="ControladorCliente" method="get">
+			<input type="hidden" name="accion" value="clienteFormulario">
+
+			DNI: <br> <input type="number" name="txtDNI" required> <br>
+			Nombres: <br> <input type="text" name="txtNombres" required>
+			<br> Apellido Paterno: <br> <input type="text"
+				name="txtApePaterno" required><br> Apellido Materno: <br>
+			<input type="text" name="txtApeMaterno" required><br>
+			Edad: <br> <input type="number" name="txtEdad" required><br>
+			Token: <br> <input type="text" name="txtToken" required><br>
+			<br> <input type="submit" value="Agregar Cliente"> <a
+				href="ControladorCliente?accion=listarCliente">Cancelar</a>
 		</form>
 	</div>
-
 </body>
 </html>

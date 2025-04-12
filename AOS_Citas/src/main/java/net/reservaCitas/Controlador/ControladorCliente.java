@@ -18,7 +18,7 @@ public class ControladorCliente extends HttpServlet {
 
 	String listarCliente = "/vistas/listarCliente.jsp";
 	String agregarCliente = "/vistas/crearCliente.jsp";
-	String editarCliente = "";
+	String editarCliente = "/vistas/editarCliente.jsp";
 	String borrarCliente = "";
 	Cliente c = new Cliente();
 	ClienteDAO dao = new ClienteDAO();
@@ -60,7 +60,35 @@ public class ControladorCliente extends HttpServlet {
 			c.setToken(token);
 
 			dao.agregarCliente(c);
-			acceso=listarCliente;
+			acceso = listarCliente;
+		} else if (action.equalsIgnoreCase("editar")) {
+			request.setAttribute("tokenper", request.getParameter("tokenFront"));
+			acceso = editarCliente;
+		} else if (action.equalsIgnoreCase("Modificar")) {
+			int id = Integer.parseInt(request.getParameter("txtId"));
+			String dniEditar = request.getParameter("txtDNI");
+			String nombreEditar = request.getParameter("txtNombres");
+			String paternoEditar = request.getParameter("txtApePaterno");
+			String maternaEditar = request.getParameter("txtApeMaterno");
+			String tokenEditar = request.getParameter("txtToken");
+			String edadEditar = request.getParameter("txtEdad");
+
+			// Convertir los parámetros a tipos adecuados
+			int dni = Integer.parseInt(dniEditar);
+			int edad = Integer.parseInt(edadEditar);
+
+			// setear los valores
+			c.setId(id);
+			c.setDni(dni);
+			c.setNombres(nombreEditar);
+			c.setApellidoPaterno(paternoEditar);
+			c.setApellidoMaterno(maternaEditar);
+			c.setToken(tokenEditar);
+			c.setEdad(edad);
+
+			dao.editarCliente(c);
+			acceso = listarCliente;
+
 		}
 
 		RequestDispatcher vista = request.getRequestDispatcher(acceso);

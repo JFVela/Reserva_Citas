@@ -1,86 +1,82 @@
 package net.reservaCitas.Modelo;
 
 public class Cliente {
-	//Creamos las variables
-    private int dni;
-    private String nombres;
-    private String apellidoMaterno;
-    private String apellidoPaterno;
-    private int edad;
-    private String token;
+	// Creamos las variables
+	private int id;
+	private int dni;
+	private String token;
+	private String nombres;
+	private String apellidoPaterno;
+	private String apellidoMaterno;
+	private int edad;
 
-    // Constructor vacío
-    public Cliente() {
-    }
+	public Cliente() {
+	}
 
-    // Constructor con todos los campos
-    public Cliente(int dni, String nombres, String apellidoMaterno, String apellidoPaterno, int edad, String token) {
-        this.dni = dni;
-        this.nombres = nombres;
-        this.apellidoMaterno = apellidoMaterno;
-        this.apellidoPaterno = apellidoPaterno;
-        this.edad = edad;
-        this.token = token;
-    }
+	public Cliente(int id, int dni, String token, String nombres, String apellidoPaterno, String apellidoMaterno,
+			int edad) {
+		this.dni = dni;
+		this.token = token;
+		this.nombres = nombres;
+		this.apellidoPaterno = apellidoPaterno;
+		this.apellidoMaterno = apellidoMaterno;
+		this.edad = edad;
+	}
 
-    // Getters y Setters
-    public int getDni() {
-        return dni;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getNombres() {
-        return nombres;
-    }
+	public int getDni() {
+		return dni;
+	}
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
+	public String getNombres() {
+		return nombres;
+	}
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
 
-    public int getEdad() {
-        return edad;
-    }
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
+	}
 
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
+	}
 
-    public String getToken() {
-        return token;
-    }
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
+	}
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "dni=" + dni +
-                ", nombres='" + nombres + '\'' +
-                ", apellidoMaterno='" + apellidoMaterno + '\'' +
-                ", apellidoPaterno='" + apellidoPaterno + '\'' +
-                ", edad=" + edad +
-                ", token='" + token + '\'' +
-                '}';
-    }
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
 }

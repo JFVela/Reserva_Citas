@@ -21,7 +21,7 @@ public class ClienteDAO implements CRUD {
 	@Override
 	public List<Cliente> listar() {
 		List<Cliente> list = new ArrayList<>();
-		String sql = "SELECT * FROM cliente";
+		String sql = "SELECT * FROM pacientes";
 
 		try {
 			con = cn.getConection();
@@ -30,6 +30,7 @@ public class ClienteDAO implements CRUD {
 
 			while (rs.next()) {
 				Cliente cli = new Cliente();
+				cli.setId(rs.getInt("id_cliente"));
 				cli.setDni(rs.getInt("dni"));
 				cli.setNombres(rs.getString("nombres"));
 				cli.setApellidoPaterno(rs.getString("apellidoPaterno"));
@@ -46,19 +47,38 @@ public class ClienteDAO implements CRUD {
 	}
 
 	@Override
-	public Cliente list(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente list(String tokenJava) {
+		String sql = "SELECT * FROM pacientes WHERE token = ?";
+		Cliente cliente = new Cliente();
+		try {
+			con = cn.getConection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, tokenJava); // Evita inyección y errores de comillas
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				cliente.setId(rs.getInt("id_cliente"));
+				cliente.setDni(rs.getInt("dni"));
+				cliente.setNombres(rs.getString("nombres"));
+				cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
+				cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
+				cliente.setEdad(rs.getInt("edad"));
+				cliente.setToken(rs.getString("token"));
+			}
+		} catch (Exception e) {
+			System.out.println("Error al listar cliente por token: " + e.getMessage());
+		}
+		return cliente;
 	}
 
 	@Override
 	public boolean agregarCliente(Cliente cli) {
-		String sql = "INSERT INTO `reservacitas`.`cliente` (`dni`, `nombres`, `apellidoPaterno`, `apellidoMaterno`, `edad`, `token`) VALUES (?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO pacientes (dni, nombres, apellidoPaterno, apellidoMaterno, edad, token) VALUES (?, ?, ?, ?, ?, ?)";
+
 		try {
 			con = cn.getConection();
 			ps = con.prepareStatement(sql);
 
-			// Insertar los valores del cliente en el PreparedStatement
 			ps.setInt(1, cli.getDni());
 			ps.setString(2, cli.getNombres());
 			ps.setString(3, cli.getApellidoPaterno());
@@ -66,20 +86,37 @@ public class ClienteDAO implements CRUD {
 			ps.setInt(5, cli.getEdad());
 			ps.setString(6, cli.getToken());
 
-			// Ejecutar la consulta
 			int result = ps.executeUpdate();
 
-			return result > 0; // Si la inserción fue exitosa, devuelve true
+			return result > 0;
 		} catch (Exception e) {
 			System.out.println("Error al agregar cliente: " + e.getMessage());
-			return false; // En caso de error, devuelve false
+			return false;
 		}
 	}
 
 	@Override
 	public boolean editarCliente(Cliente cli) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE pacientes SET nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, edad = ?, token = ? WHERE dni = ?";
+
+		try {
+			con = cn.getConection();
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, cli.getNombres());
+			ps.setString(2, cli.getApellidoPaterno());
+			ps.setString(3, cli.getApellidoMaterno());
+			ps.setInt(4, cli.getEdad());
+			ps.setString(5, cli.getToken());
+			ps.setInt(6, cli.getDni()); // El DNI es la clave para ubicar al paciente
+
+			int result = ps.executeUpdate();
+
+			return result > 0;
+		} catch (Exception e) {
+			System.out.println("Error al editar cliente: " + e.getMessage());
+			return false;
+		}
 	}
 
 	@Override

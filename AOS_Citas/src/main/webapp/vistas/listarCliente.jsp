@@ -11,15 +11,19 @@
 <body>
 
 	<h1>Listar Personas</h1>
-	<a href="ControladorCliente?accion=agregarCliente">Agregar Nuevo cliente</a>
+	<a href="ControladorCliente?accion=agregarCliente">Agregar Nuevo
+		cliente</a>
 	<table border="1">
 		<thead>
 			<tr>
+				<th>ID</th>
 				<th>DNI</th>
 				<th>Nombres</th>
-				<th>Apellidos</th>
+				<th>Apellido Paterno</th>
+				<th>Apellido Materno</th>
 				<th>Edad</th>
 				<th>Token</th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,17 +33,25 @@
 			for (Cliente cli : list) {
 			%>
 			<tr>
+				<td><%=cli.getId()%></td>
 				<td><%=cli.getDni()%></td>
 				<td><%=cli.getNombres()%></td>
-				<td><%=cli.getApellidoPaterno()%> <%=cli.getApellidoMaterno()%></td>
+				<td><%=cli.getApellidoPaterno()%></td>
+				<td><%=cli.getApellidoMaterno()%></td>
 				<td><%=cli.getEdad()%></td>
 				<td><%=cli.getToken()%></td>
+				<td><a
+					href="ControladorCliente?accion=editar&tokenFront=<%=cli.getToken()%>">Editar</a>
+					| <a
+					href="ControladorCliente?accion=borrarCliente&tokenFront=<%=cli.getToken()%>">Modificar</a>
+				</td>
 			</tr>
 			<%
 			}
 			%>
 		</tbody>
 	</table>
+
 
 </body>
 </html>
