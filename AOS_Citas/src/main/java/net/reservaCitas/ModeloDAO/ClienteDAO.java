@@ -121,8 +121,17 @@ public class ClienteDAO implements CRUD {
 
 	@Override
 	public boolean eliminarCliente(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM pacientes WHERE id_cliente = ?";
+		try {
+			con = cn.getConection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			int result = ps.executeUpdate();
+			return result > 0; // Devuelve true si se eliminó algo
+		} catch (Exception e) {
+			System.out.println("Error al eliminar cliente: " + e.getMessage());
+			return false;
+		}
 	}
 
 }

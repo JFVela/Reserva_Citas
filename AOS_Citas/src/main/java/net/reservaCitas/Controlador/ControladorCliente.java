@@ -19,7 +19,6 @@ public class ControladorCliente extends HttpServlet {
 	String listarCliente = "/vistas/listarCliente.jsp";
 	String agregarCliente = "/vistas/crearCliente.jsp";
 	String editarCliente = "/vistas/editarCliente.jsp";
-	String borrarCliente = "";
 	Cliente c = new Cliente();
 	ClienteDAO dao = new ClienteDAO();
 
@@ -60,7 +59,9 @@ public class ControladorCliente extends HttpServlet {
 			c.setToken(token);
 
 			dao.agregarCliente(c);
-			acceso = listarCliente;
+
+			response.sendRedirect("ControladorCliente?accion=listarCliente");
+			return;
 		} else if (action.equalsIgnoreCase("editar")) {
 			request.setAttribute("tokenper", request.getParameter("tokenFront"));
 			acceso = editarCliente;
@@ -89,6 +90,11 @@ public class ControladorCliente extends HttpServlet {
 			dao.editarCliente(c);
 			acceso = listarCliente;
 
+		} else if (action.equalsIgnoreCase("eliminar")) {
+			int id = Integer.parseInt(request.getParameter("idFront"));
+			c.setId(id);
+			dao.eliminarCliente(id);
+			acceso = listarCliente;
 		}
 
 		RequestDispatcher vista = request.getRequestDispatcher(acceso);

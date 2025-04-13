@@ -42,8 +42,8 @@
 				<td><%=cli.getToken()%></td>
 				<td><a
 					href="ControladorCliente?accion=editar&tokenFront=<%=cli.getToken()%>">Editar</a>
-					| <a
-					href="ControladorCliente?accion=borrarCliente&tokenFront=<%=cli.getToken()%>">Modificar</a>
+					<br> <a
+					href="ControladorCliente?accion=eliminar&idFront=<%=cli.getId()%>">Eliminar</a>
 				</td>
 			</tr>
 			<%
