@@ -185,131 +185,140 @@ body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-        // Array of dashboard modulos
-        const moduloDashboard = [
-            {
-                id: "patients",
-                title: 'Pacientes',
-                icon: 'bi-people-fill',
-                description: 'Gestione registros, historiales e información de pacientes',
-                link: 'pacienteControlador?accion=listarPaciente',
-                iconClass: 'icon-patients'
-            },
-            {
-                id: 'doctors',
-                title: 'Doctores',
-                icon: 'bi-person-badge-fill',
-                description: 'Administre perfiles y horarios de los médicos',
-                link: '#',
-                iconClass: 'icon-doctors'
-            },
-            {
-                id: 'specialties',
-                title: 'Especialidades',
-                icon: 'bi-clipboard2-pulse-fill',
-                description: 'Gestione las especialidades médicas disponibles',
-                link: '#',
-                iconClass: 'icon-specialties'
-            },
-            {
-                id: 'schedules',
-                title: 'Horarios',
-                icon: 'bi-calendar-week-fill',
-                description: 'Visualice y administre los horarios de atención',
-                link: '#',
-                iconClass: 'icon-schedules'
-            },
-            {
-                id: 'locations',
-                title: 'Sedes',
-                icon: 'bi-geo-alt-fill',
-                description: 'Gestione las ubicaciones y instalaciones del hospital',
-                link: '#',
-                iconClass: 'icon-locations'
-            },
-            {
-                id: 'appointments',
-                title: 'Citas Médicas',
-                icon: 'bi-journal-medical',
-                description: 'Programe y administre citas de pacientes',
-                link: '#',
-                iconClass: 'icon-appointments'
-            }
-        ];
-        
-        // Function to generate modulos based on the array
-        function generatemodulos() {
-            const contenidoModulo = document.getElementById('contenidoModulo');
-            
-            // Check if the container exists
-            if (!contenidoModulo) {
-                console.error('Error: contenidoModulo element not found');
-                return;
-            }
-            
-            // Clear the container first
-            contenidoModulo.innerHTML = '';
-            
-            // Check if moduloDashboard is defined and is an array
-            if (!Array.isArray(moduloDashboard) || moduloDashboard.length === 0) {
-                console.error('Error: moduloDashboard is not a valid array or is empty');
-                return;
-            }
-            
-            // Loop through each modulo and create the HTML
-			moduloDashboard.forEach(function(modulo, index) {
-			    let cardHtml = "<div class='col-md-6 col-lg-4'>" +
-			        "<div class='card card-dashboard'>" +
-			            "<div class='card-body-custom'>" +
-			                "<div class='d-flex align-items-center mb-3'>" +
-			                    "<div class='card-icon " + modulo.iconClass + " me-3'>" +
-			                        "<i class='bi " + modulo.icon + "'></i>" +
-			                    "</div>" +
-			                    "<h5 class='card-title mb-0'>" + modulo.title + "</h5>" +
-			                "</div>" +
-			                "<p class='card-text'>" + modulo.description + "</p>" +
-			                "<a href='" + modulo.link + "' class='btn btn-access w-100'>" +
-			                    "Acceder <i class='bi bi-arrow-right ms-1'></i>" +
-			                "</a>" +
-			            "</div>" +
-			        "</div>" +
-			    "</div>";
-			
-			    document.getElementById("contenidoModulo").innerHTML += cardHtml;
-			});
-            
-            console.log('modulos generated successfully:', moduloDashboard.length);
-        }
-        
-        // Function to display current date
-        function displayCurrentDate() {
-            const dateElement = document.getElementById('currentDate');
-            if (!dateElement) {
-                console.error('Error: currentDate element not found');
-                return;
-            }
-            
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const today = new Date();
-            dateElement.textContent = today.toLocaleDateString('es-ES', options);
-        }
-        
-        // Initialize the dashboard - Make sure this runs after DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM fully loaded');
-            generatemodulos();
-            displayCurrentDate();
-        });
-        
-        // Fallback initialization in case DOMContentLoaded doesn't trigger properly
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            console.log('Document already loaded, initializing directly');
-            setTimeout(function() {
-                generatemodulos();
-                displayCurrentDate();
-            }, 1);
-        }
-    </script>
+		// Array of dashboard modulos
+		const moduloDashboard = [
+				{
+					id : "patients",
+					title : 'Pacientes',
+					icon : 'bi-people-fill',
+					description : 'Gestione registros, historiales e información de pacientes',
+					link : 'pacienteControlador?accion=listarPaciente',
+					iconClass : 'icon-patients'
+				},
+				{
+					id : 'doctors',
+					title : 'Doctores',
+					icon : 'bi-person-badge-fill',
+					description : 'Administre perfiles y horarios de los médicos',
+					link : '#',
+					iconClass : 'icon-doctors'
+				},
+				{
+					id : 'specialties',
+					title : 'Especialidades',
+					icon : 'bi-clipboard2-pulse-fill',
+					description : 'Gestione las especialidades médicas disponibles',
+					link : '#',
+					iconClass : 'icon-specialties'
+				},
+				{
+					id : 'schedules',
+					title : 'Horarios',
+					icon : 'bi-calendar-week-fill',
+					description : 'Visualice y administre los horarios de atención',
+					link : '#',
+					iconClass : 'icon-schedules'
+				},
+				{
+					id : 'locations',
+					title : 'Sedes',
+					icon : 'bi-geo-alt-fill',
+					description : 'Gestione las ubicaciones y instalaciones del hospital',
+					link : '#',
+					iconClass : 'icon-locations'
+				}, {
+					id : 'appointments',
+					title : 'Citas Médicas',
+					icon : 'bi-journal-medical',
+					description : 'Programe y administre citas de pacientes',
+					link : '#',
+					iconClass : 'icon-appointments'
+				} ];
+
+		// Function to generate modulos based on the array
+		function generatemodulos() {
+			const contenidoModulo = document.getElementById('contenidoModulo');
+
+			// Check if the container exists
+			if (!contenidoModulo) {
+				console.error('Error: contenidoModulo element not found');
+				return;
+			}
+
+			// Clear the container first
+			contenidoModulo.innerHTML = '';
+
+			// Check if moduloDashboard is defined and is an array
+			if (!Array.isArray(moduloDashboard) || moduloDashboard.length === 0) {
+				console
+						.error('Error: moduloDashboard is not a valid array or is empty');
+				return;
+			}
+
+			// Loop through each modulo and create the HTML
+			moduloDashboard
+					.forEach(function(modulo, index) {
+						let cardHtml = "<div class='col-md-6 col-lg-4'>"
+								+ "<div class='card card-dashboard'>"
+								+ "<div class='card-body-custom'>"
+								+ "<div class='d-flex align-items-center mb-3'>"
+								+ "<div class='card-icon " + modulo.iconClass + " me-3'>"
+								+ "<i class='bi " + modulo.icon + "'></i>"
+								+ "</div>"
+								+ "<h5 class='card-title mb-0'>"
+								+ modulo.title
+								+ "</h5>"
+								+ "</div>"
+								+ "<p class='card-text'>"
+								+ modulo.description
+								+ "</p>"
+								+ "<a href='" + modulo.link + "' class='btn btn-access w-100'>"
+								+ "Acceder <i class='bi bi-arrow-right ms-1'></i>"
+								+ "</a>" + "</div>" + "</div>" + "</div>";
+
+						document.getElementById("contenidoModulo").innerHTML += cardHtml;
+					});
+
+			console.log('modulos generated successfully:',
+					moduloDashboard.length);
+		}
+
+		// Function to display current date
+		function displayCurrentDate() {
+			const dateElement = document.getElementById('currentDate');
+			if (!dateElement) {
+				console.error('Error: currentDate element not found');
+				return;
+			}
+
+			const options = {
+				weekday : 'long',
+				year : 'numeric',
+				month : 'long',
+				day : 'numeric'
+			};
+			const today = new Date();
+			dateElement.textContent = today
+					.toLocaleDateString('es-ES', options);
+		}
+
+		// Initialize the dashboard - Make sure this runs after DOM is fully loaded
+		document.addEventListener('DOMContentLoaded', function() {
+			console.log('DOM fully loaded');
+			generatemodulos();
+			displayCurrentDate();
+		});
+
+		// Fallback initialization in case DOMContentLoaded doesn't trigger properly
+		if (document.readyState === 'complete'
+				|| document.readyState === 'interactive') {
+			console.log('Document already loaded, initializing directly');
+			setTimeout(function() {
+				generatemodulos();
+				displayCurrentDate();
+			}, 1);
+		}
+	</script>
 </body>
 </html>
 
