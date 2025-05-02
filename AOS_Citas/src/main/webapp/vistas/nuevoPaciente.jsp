@@ -4,33 +4,148 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agregar Paciente</title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom CSS -->
+<style>
+body {
+	background-color: #f8f9fa;
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.form-container {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+.page-title {
+	color: #0d6efd;
+	margin-bottom: 25px;
+	text-align: center;
+	font-weight: 600;
+}
+
+.form-label {
+	font-weight: 500;
+}
+
+.btn-primary {
+	background-color: #0d6efd;
+	border: none;
+	padding: 10px 20px;
+}
+
+.btn-secondary {
+	background-color: #6c757d;
+	border: none;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: white;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.btn-secondary:hover {
+	background-color: #5a6268;
+	color: white;
+}
+/* Responsive adjustments */
+@media ( max-width : 767.98px) {
+	.form-container {
+		padding: 20px;
+	}
+}
+</style>
 </head>
 <body>
-	<div>
-		<h1>Agregar Paciente</h1>
-		<form action="pacienteControlador" method="get">
-			<input type="hidden" name="accion" value="pacienteFormulario">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-10">
+				<div class="form-container">
+					<h1 class="page-title">Agregar Paciente</h1>
+					<form action="pacienteControlador" method="get">
+						<input type="hidden" name="accion" value="pacienteFormulario">
 
-			DNI: <br> <input type="number" name="txtDNI" required><br>
+						<div class="row">
+							<!-- Left Column -->
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="txtDNI" class="form-label">DNI:</label> <input
+										type="number" class="form-control" id="txtDNI" name="txtDNI"
+										required>
+								</div>
 
-			Nombres: <br> <input type="text" name="txtNombres" required><br>
+								<div class="mb-3">
+									<label for="txtNombres" class="form-label">Nombres:</label> <input
+										type="text" class="form-control" id="txtNombres"
+										name="txtNombres" required>
+								</div>
 
-			Apellido Paterno: <br> <input type="text" name="txtApePaterno"
-				required><br> Apellido Materno: <br> <input
-				type="text" name="txtApeMaterno" required><br> Género:
-			<br> <select name="txtGenero" required>
-				<option value="Masculino">Masculino</option>
-				<option value="Femenino">Femenino</option>
-				<option value="Otro">Otro</option>
-			</select><br> Fecha de Nacimiento: <br> <input type="date"
-				name="txtFechaNacimiento" required><br> Dirección: <br>
-			<input type="text" name="txtDireccion" required><br>
+								<div class="mb-3">
+									<label for="txtApePaterno" class="form-label">Apellido
+										Paterno:</label> <input type="text" class="form-control"
+										id="txtApePaterno" name="txtApePaterno" required>
+								</div>
 
-			Token: <br> <input type="text" name="txtToken" required><br>
-			<br> <input type="submit" value="Agregar Paciente"> <a
-				href="pacienteControlador?accion=listarPaciente">Cancelar</a>
-		</form>
+								<div class="mb-3">
+									<label for="txtApeMaterno" class="form-label">Apellido
+										Materno:</label> <input type="text" class="form-control"
+										id="txtApeMaterno" name="txtApeMaterno" required>
+								</div>
+							</div>
+
+							<!-- Right Column -->
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="txtGenero" class="form-label">Género:</label> <select
+										class="form-select" id="txtGenero" name="txtGenero" required>
+										<option value="Masculino">Masculino</option>
+										<option value="Femenino">Femenino</option>
+										<option value="Otro">Otro</option>
+									</select>
+								</div>
+
+								<div class="mb-3">
+									<label for="txtFechaNacimiento" class="form-label">Fecha
+										de Nacimiento:</label> <input type="date" class="form-control"
+										id="txtFechaNacimiento" name="txtFechaNacimiento" required>
+								</div>
+
+								<div class="mb-3">
+									<label for="txtDireccion" class="form-label">Dirección:</label>
+									<input type="text" class="form-control" id="txtDireccion"
+										name="txtDireccion" required>
+								</div>
+								<%
+								String token = java.util.UUID.randomUUID().toString();
+								%>
+								<input type="hidden" class="form-control" id="txtToken"
+									name="txtToken" value="<%=token%>">
+							</div>
+						</div>
+
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+							<button type="submit" class="btn btn-primary me-md-2">Agregar
+								Paciente</button>
+							<a href="pacienteControlador?accion=listarPaciente"
+								class="btn btn-secondary">Cancelar</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
+
+	<!-- Bootstrap JS Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
